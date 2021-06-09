@@ -17,7 +17,7 @@ For example:
     2  1
 because 3 x 7 = 21
 Representations of the boxes are saved to a file in the run directory, named 
-all_boxes.txt (this is the same as the file in this repository). 
+all_boxes.txt (also [in this repository](https://github.com/Janna112358/cracking-the-cryptic/blob/master/all_boxes.txt)).
 
 The script also allows checking if two boxes can form a "domino", i.e. if they
 can be placed next to each other, overlapping in one column. For example:   
@@ -27,4 +27,4 @@ can domino, because the 3, 2 columns can overlap, and there are no other repeate
 digits in each row.
 Because there is a "triple domino" i.e three boxes next to each other overlapping
 in the puzzle, the script computes all possible combinations of boxes that do so.
-These results are saved in the file triple_dominoes.txt.
+These results are saved in the file triple_dominoes.txt (also [in this repository](https://github.com/Janna112358/cracking-the-cryptic/blob/master/triple_dominoes.txt)).
