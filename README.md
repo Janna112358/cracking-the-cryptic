@@ -17,4 +17,4 @@ For example:
     2  1
 because 3 x 7 = 21
 Representations of the boxes are saved to a file in the run directory, named 
-all_boxes.txt (this is the same as the file in this repository). 
+all_boxes.txt (also [in this repository](https://github.com/Janna112358/cracking-the-cryptic/blob/master/all_boxes.txt)).
