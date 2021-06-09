@@ -63,5 +63,11 @@ if __name__ == "__main__":
     boxes = Box.createAllValid()
     print(f"Found {len(boxes)} valid boxes.")
     
-    for box in boxes:
-        print(box)
+    #for box in boxes:
+    #   print(box)
+        
+    with open('all_boxes.txt', 'w+') as outputFile:
+        for box in boxes:
+            outputFile.write(str(box))
+            
+            
