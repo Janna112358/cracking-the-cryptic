@@ -12,6 +12,8 @@ because 3 x 7 = 21
 This program figures out all valid boxes.
 """
 
+import itertools
+
 class Box:
     def __init__(self, topLeft, topRight, bottomLeft, bottomRight):
         self.topLeft = topLeft
@@ -22,6 +24,21 @@ class Box:
     def __repr__(self):
         return f"\n{self.topLeft} | {self.topRight}\n{self.bottomLeft} | {self.bottomRight}\n"
         
+    def doesDominoRight(self, other):
+        """
+        Check if this box can "domino" (overlap) with another box on its right
+        """
+        doesOverlap = (self.topRight == other.topLeft and 
+                       self.bottomRight == other.bottomLeft)
+        rowsOk = (self.topLeft != other.topRight and 
+                  self.bottomLeft != other.bottomRight)
+        return doesOverlap and rowsOk
+
+    def doesDominoLeft(self, other):
+        """
+        Check if this box can "domino" (overlap) with another box on its left
+        """
+        return other.doesDominoRight(self)
 
     @classmethod
     def createIfValid(self, topLeft, topRight): 
@@ -58,6 +75,28 @@ class Box:
                 if box is not None:
                     allValidBoxes.append(box)
         return allValidBoxes
+    
+    
+def findTripleDominoes():
+    triples = []
+    
+    boxes = Box.createAllValid()
+    for box1, box2, box3 in itertools.product(boxes, boxes, boxes):
+        if box1 is box2 or box1 is box3 or box2 is box3: 
+            continue
+        
+        if not box1.doesDominoRight(box2): 
+            continue
+        if not box2.doesDominoRight(box3):
+            continue
+        
+        if (box1.topLeft == box3.topRight or 
+            box1.bottomLeft == box3.bottomRight):
+            continue
+        
+        triples.append([box1, box2, box3])
+    return triples
+        
 
 if __name__ == "__main__": 
     boxes = Box.createAllValid()
@@ -69,5 +108,14 @@ if __name__ == "__main__":
     with open('all_boxes.txt', 'w+') as outputFile:
         for box in boxes:
             outputFile.write(str(box))
+            
+    tripleDominoes = findTripleDominoes()
+    print(f"Found {len(tripleDominoes)} triple dominoes!")
+    
+    with open('triple_dominoes.txt', 'w+') as outputFile: 
+        for idx, domino in enumerate(tripleDominoes):
+            outputFile.write(f"\nTriple domino #{idx+1}")
+            for box in domino:
+                outputFile.write(str(box))
             
             

@@ -18,3 +18,13 @@ For example:
 because 3 x 7 = 21
 Representations of the boxes are saved to a file in the run directory, named 
 all_boxes.txt (this is the same as the file in this repository). 
+
+The script also allows checking if two boxes can form a "domino", i.e. if they
+can be placed next to each other, overlapping in one column. For example:   
+    4  3   and   3  8
+    1  2         2  4
+can domino, because the 3, 2 columns can overlap, and there are no other repeated
+digits in each row.
+Because there is a "triple domino" i.e three boxes next to each other overlapping
+in the puzzle, the script computes all possible combinations of boxes that do so.
+These results are saved in the file triple_dominoes.txt.
