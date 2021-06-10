@@ -67,21 +67,21 @@ class Box:
         return other.doesDominoRightNoRepeat(self)
 
     @classmethod
-    def createIfValid(self, topLeft, topRight): 
+    def createIfValid(self, topLeft, topRight, base=13): 
         # sudoku
         if topLeft == topRight: 
             return None
         
-        # find 2-digit product
+        # find 2-digit product and digits
         product = topLeft * topRight 
-        if product < 10 or product > 99: 
-            return None 
-        bottomLeft = product // 10
-        bottomRight = product%10
+        bottomLeft = product // base
+        bottomRight = product % base
         
-        # sudoku (no zeros) 
-        if bottomRight == 0: 
+        # sudoku digits have to be from [1, 9]
+        if (bottomLeft < 1 or bottomLeft > 9 or
+            bottomRight < 1 or bottomRight > 9):
             return None
+        
         # sudoku
         if bottomLeft == bottomRight: 
             return None 
